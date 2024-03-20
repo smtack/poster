@@ -1,11 +1,11 @@
 <section>
     <div class="heroe">
-        <h1>Create a Post</h1>
+        <h1>Edit Post</h1>
     </div>
 </section>
 
 <section>
-  <form action="/new" method="post">
+  <form action="/update/<?= esc($post['id']) ?>" method="post">
     <?= csrf_field() ?>
 
     <div class="form-group">
@@ -14,10 +14,10 @@
     </div>
     <div class="form-group">
       <label for="content">Message</label>
-      <textarea id="content" name="content"></textarea>
+      <textarea id="content" name="content"><?= esc($post['content']) ?></textarea>
     </div>
     <div class="form-group">
-      <input id="submit" type="submit" name="submit" value="Post">
+      <input id="submit" type="submit" name="submit" value="Edit">
     </div>
   </form>
 </section>

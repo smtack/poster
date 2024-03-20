@@ -4,15 +4,15 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class PostModel extends Model
+class UserModel extends Model
 {
-    protected $table            = 'posts';
+    protected $table            = 'users';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['content', 'post_by'];
+    protected $allowedFields    = ['name', 'username', 'email', 'password'];
 
     protected bool $allowEmptyInserts = false;
 
@@ -40,18 +40,8 @@ class PostModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    public function getPosts()
+    public function getUser($username)
     {
-        return $this->orderBy('created_at', 'desc')->findAll();
-    }
-
-    public function getPost($id)
-    {
-        return $this->find($id);
-    }
-
-    public function getUsersPosts($username)
-    {
-        return $this->where('post_by', $username)->orderBy('created_at', 'desc')->findAll();
+        return $this->where('username', $username)->first();
     }
 }

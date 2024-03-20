@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class AddPosts extends Migration
+class AddUsers extends Migration
 {
     public function up()
     {
@@ -15,11 +15,19 @@ class AddPosts extends Migration
                 'unsigned' => true,
                 'auto_increment' => true
             ],
-            'content' => [
-                'type' => 'TEXT',
-                'constraint' => 5000
+            'name' => [
+                'type' => 'VARCHAR',
+                'constraint' => 255
             ],
-            'post_by' => [
+            'username' => [
+                'type' => 'VARCHAR',
+                'constraint' => 255
+            ],
+            'email' => [
+                'type' => 'VARCHAR',
+                'constraint' => 255
+            ],
+            'password' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255
             ],
@@ -38,11 +46,11 @@ class AddPosts extends Migration
         ]);
 
         $this->forge->addPrimaryKey('id');
-        $this->forge->createTable('posts');
+        $this->forge->createTable('users');
     }
 
     public function down()
     {
-        $this->forge->dropTable('posts');
+        $this->forge->dropTable('users');
     }
 }

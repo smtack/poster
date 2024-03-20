@@ -1,8 +1,8 @@
 <section>
     <div class="heroe">
-        <h1>Welcome to Poster <?= session()->get('name') ?: '' ?></h1>
-
-        <h2>A posting site</h2>
+        <h1><?= esc($user['name']) ?>'s Profile</h1>
+        <h3>@<?= esc($user['username']) ?></h3>
+        <h4>User since: <?= date('j F Y', strtotime(esc($user['created_at']))) ?></h4>
     </div>
 </section>
 
@@ -15,7 +15,7 @@
         <?php foreach($posts as $post): ?>
             <pre>
                 <code><p><?= esc($post['content']) ?></p></code>
-                <code><span>By <a href="/profile/<?= esc($post['post_by']) ?>"><?= esc($post['post_by']) ?></a>on <?= date('j F Y \a\t H:i', strtotime(esc($post['created_at']))) ?></span></code>
+                <code><span>By <?= esc($post['post_by']) ?> on <?= date('j F Y \a\t H:i', strtotime(esc($post['created_at']))) ?></span></code>
                 <code><span><a href="/post/<?= esc($post['id']) ?>">View</a></span></code>
 
                 <?php if(session()->get('loggedIn') && session()->get('username') == $post['post_by']): ?>
@@ -25,11 +25,5 @@
         <?php endforeach; ?>
     <?php else: ?>
         <h3>No Posts</h3>
-
-        <?php if(session()->get('loggedIn')): ?>
-            <p>Make a post <a href="/create">Here</a></p>
-        <?php else: ?>
-            <p>Sign up to create a post <a href="/signup">here</a></p>
-        <?php endif; ?>
     <?php endif; ?>
 </section>
