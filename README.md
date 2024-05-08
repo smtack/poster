@@ -2,7 +2,7 @@
 
 ## Setup
 
-Create a database. Copy `env` to `.env` and tailor for your app, specifically the baseURL and any database settings. Then run `php spark migrate`.
+Create a database. Copy `env` to `.env` and tailor for your app, specifically the baseURL and any database settings. Then run `composer install` and `php spark migrate`.
 
 ## Server Requirements
 

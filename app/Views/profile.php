@@ -6,8 +6,6 @@
     </div>
 </section>
 
-<!-- CONTENT -->
-
 <section>
     <h1>Posts</h1>
 

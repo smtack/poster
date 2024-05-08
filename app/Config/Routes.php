@@ -7,7 +7,8 @@ use App\Controllers\User;
 /**
  * @var RouteCollection $routes
  */
-$routes->get('/', 'Home::index');
+$routes->get('/', [Post::class, 'index']);
+
 $routes->get('post/(:num)', [Post::class, 'post']);
 
 $routes->get('signup', [User::class, 'signup'], ['filter' => 'AuthenticatedFilter']);
@@ -32,3 +33,9 @@ $routes->get('edit/(:num)', [Post::class, 'edit'], ['filter' => 'GuestFilter']);
 $routes->post('update/(:num)', [Post::class, 'update'], ['filter' => 'GuestFilter']);
 
 $routes->get('delete/(:num)', [Post::class, 'delete'], ['filter' => 'GuestFilter']);
+
+$routes->post('comment/(:num)', [Post::class, 'comment'], ['filter' => 'GuestFilter']);
+
+$routes->get('edit-comment/(:num)', [Post::class, 'editComment'], ['filter' => 'GuestFilter']);
+$routes->post('update-comment/(:num)', [Post::class, 'updateComment'], ['filter' => 'GuestFilter']);
+$routes->get('delete-comment/(:num)', [Post::class, 'deleteComment'], ['filter' => 'GuestFilter']);
