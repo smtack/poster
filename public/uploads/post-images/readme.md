@@ -1,0 +1,1 @@
+Post images are uploaded to this folder

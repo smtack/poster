@@ -1,5 +1,8 @@
 <section>
     <div class="heroe">
+        <?php if($user['profile_picture']): ?>
+            <img src="<?= base_url('/uploads/profile-pictures/') ?><?= esc($user['profile_picture']) ?>" alt="Profile Picture">
+        <?php endif; ?>
         <h1><?= esc($user['name']) ?>'s Profile</h1>
         <h3>@<?= esc($user['username']) ?></h3>
         <h4>User since: <?= date('j F Y', strtotime(esc($user['created_at']))) ?></h4>

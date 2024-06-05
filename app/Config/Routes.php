@@ -23,6 +23,7 @@ $routes->get('profile/(:segment)', [User::class, 'profile']);
 
 $routes->get('update-profile', [User::class, 'updateProfile'], ['filter' => 'GuestFilter']);
 $routes->post('update-profile', [User::class, 'updateProfileData'], ['filter' => 'GuestFilter']);
+$routes->post('upload-profile-picture', [User::class, 'uploadProfilePicture'], ['filter' => 'GuestFilter']);
 $routes->post('change-password', [User::class, 'changePassword'], ['filter' => 'GuestFilter']);
 $routes->post('delete-profile', [User::class, 'deleteProfile'], ['filter' => 'GuestFilter']);
 

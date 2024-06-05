@@ -104,6 +104,11 @@ section .heroe {
   padding: 1rem 1.75rem 1.75rem 1.75rem;
   background-color: rgba(247, 248, 249, 1);
 }
+section .heroe img {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+}
 section .heroe h1 {
   font-size: 2.5rem;
   font-weight: 500;
@@ -131,6 +136,11 @@ section pre {
   padding: 1rem 1.5rem;
   white-space: pre-wrap;
   word-break: break-all;
+}
+section #post-image {
+  width: 80%;
+  display: block;
+  margin: 0 auto;
 }
 section code {
   display: block;

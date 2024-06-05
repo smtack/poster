@@ -5,12 +5,16 @@
 </section>
 
 <section>
-  <form action="/update/<?= esc($post['id']) ?>" method="post">
+  <form enctype="multipart/form-data" action="/update/<?= esc($post['id']) ?>" method="post">
     <?= csrf_field() ?>
 
     <div class="form-group">
       <?= session()->getFlashdata('error') ?>
       <?= validation_list_errors() ?>
+    </div>
+    <div class="form-group">
+      <label for="image">Image (Optional)</label>
+      <input id="image" type="file" name="image">
     </div>
     <div class="form-group">
       <label for="content">Message</label>

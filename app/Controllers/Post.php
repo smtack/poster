@@ -32,19 +32,53 @@ class Post extends BaseController
     {
         $data = $this->request->getPost(['content']);
 
-        if(!$this->validateData($data, ['content' => 'required|min_length[2]|max_length[5000]'])) {
+        $file = $this->request->getFile('image');
+
+        $rules = [];
+
+        if($file != '') {
+            $rules += [
+                'image' => [
+                    'label' => 'Post Image',
+                    'rules' => [
+                        'uploaded[image]',
+                        'is_image[image]',
+                        'mime_in[image,image/jpg,image/jpeg,image/png,image/webp]',
+                        'max_size[image, 1024]'
+                    ]
+                ]
+            ];
+        }
+
+        $rules += ['content' => 'required|min_length[2]|max_length[5000]'];
+
+        if(!$this->validateData($data, $rules)) {
             return $this->create();
         }
 
         $post = $this->validator->getValidated();
 
-        $data = [
+        $data = [];
+
+        if($file != '') {
+            if(!$file->hasMoved()) {
+                $file->move('./uploads/post-images');
+
+                $data += ['post_image' => $file->getName()];
+            } else {
+                session()->setFlashData('error', 'The file has already been uploaded');
+                
+                return $this->create();
+            }
+        }
+
+        $data += [
             'content' => $post['content'],
             'post_by' => session()->get('username')
         ];
-
+        
         $model = new PostModel();
-
+        
         $model->insert($data);
 
         return redirect()->to(base_url());
@@ -86,15 +120,54 @@ class Post extends BaseController
     {
         $data = $this->request->getPost(['content']);
 
-        if(!$this->validateData($data, ['content' => 'required|min_length[2]|max_length[5000]'])) {
+        $file = $this->request->getFile('image');
+
+        $rules = [];
+
+        if($file != '') {
+            $rules += [
+                'image' => [
+                    'label' => 'Post Image',
+                    'rules' => [
+                        'uploaded[image]',
+                        'is_image[image]',
+                        'mime_in[image,image/jpg,image/jpeg,image/png,image/webp]',
+                        'max_size[image, 1024]'
+                    ]
+                ]
+            ];
+        }
+
+        $rules += ['content' => 'required|min_length[2]|max_length[5000]'];
+
+        if(!$this->validateData($data, $rules)) {
             return $this->edit($id);
         }
 
         $post = $this->validator->getValidated();
         
+        $data = [];
+
+        if($file != '') {
+            if(!$file->hasMoved()) {
+                $file->move('./uploads/post-images');
+
+                $data += ['post_image' => $file->getName()];
+            } else {
+                session()->setFlashData('error', 'The file has already been uploaded');
+                
+                return $this->create();
+            }
+        }
+        
+        $data += [
+            'id' => $id,
+            'content' => $post['content']
+        ];
+        
         $model = new PostModel();
 
-        $model->update($id, $post);
+        $model->save($data);
 
         return redirect()->to(base_url());
     }

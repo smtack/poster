@@ -23,6 +23,11 @@ class AddPosts extends Migration
                 'type' => 'VARCHAR',
                 'constraint' => 255
             ],
+            'post_image' => [
+                'type' => 'VARCHAR',
+                'constraint' => 255,
+                'null' => true
+            ],
             'created_at' => [
                 'type' => 'TIMESTAMP',
                 'null' => true

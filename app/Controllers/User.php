@@ -157,6 +157,50 @@ class User extends BaseController
         return redirect()->to(base_url('/update-profile'));
     }
 
+    public function uploadProfilePicture()
+    {
+        $rules = [
+            'picture' => [
+                'label' => 'Profile Picture',
+                'rules' => [
+                    'uploaded[picture]',
+                    'is_image[picture]',
+                    'mime_in[picture,image/jpg,image/jpeg,image/png,image/webp]',
+                    'max_size[picture, 1024]'
+                ]
+            ]
+        ];
+
+        if(!$this->validateData([], $rules)) {
+            $data['image_errors'] = $this->validator->getErrors();
+
+            return $this->updateProfile($data);
+        }
+
+        $file = $this->request->getFile('picture');
+
+        if(!$file->hasMoved()) {
+            $file->move('./uploads/profile-pictures');
+
+            $data = [
+                'id' => session()->get('id'),
+                'profile_picture' => $file->getName()
+            ];
+
+            $model = new UserModel();
+
+            $model->save($data);
+
+            session()->setFlashdata('message', 'Profile picture uploaded');
+
+            return redirect()->to(base_url('/update-profile'));
+        }
+
+        $data = ['image_errors' => 'The file has already been uploaded'];
+
+        return $this->updateProfile($data);
+    }
+
     public function changePassword()
     {
         $data = $this->request->getPost(['current_password', 'new_password', 'confirm']);

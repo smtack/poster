@@ -49,6 +49,37 @@
 
 <section>
     <div class="mini-heroe">
+        <h2>Profile Picture</h2>
+    </div>
+</section>
+
+<section>
+  <form enctype="multipart/form-data" action="/upload-profile-picture" method="post">
+    <?= csrf_field() ?>
+
+    <div class="form-group">
+      <?php if(session()->getFlashData('picture-error')): ?>
+        <div class="error">
+          <?= session()->getFlashdata('picture-error') ?>
+        </div>
+      <?php endif; ?>
+      
+      <?php if(isset($image_errors)): foreach($image_errors as $error): ?>
+        <li class="error"><?= $error ?></li>
+      <?php endforeach; endif;?>
+    </div>
+    <div class="form-group">
+      <label for="picture">Select Profile Picture</label>
+      <input id="picture" type="file" name="picture">
+    </div>
+    <div class="form-group">
+      <input id="upload" type="submit" name="upload" value="Upload">
+    </div>
+  </form>
+</section>
+
+<section>
+    <div class="mini-heroe">
         <h2>Change Password</h2>
     </div>
 </section>

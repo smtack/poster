@@ -1,5 +1,9 @@
 <section>
   <pre>
+      <?php if($post['post_image']): ?>
+        <img id="post-image" src="<?= base_url('/uploads/post-images/') ?><?= $post['post_image'] ?>" alt="Post Image">
+      <?php endif; ?>
+
       <code><p><?= esc($post['content']) ?></p></code>
       <code><span>By <a href="/profile/<?= esc($post['post_by']) ?>"><?= esc($post['post_by']) ?></a>on <?= date('j F Y \a\t H:i', strtotime(esc($post['created_at']))) ?></span></code>
 
