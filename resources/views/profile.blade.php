@@ -6,24 +6,27 @@
                     <section>
                         <header>
                             <div class="float-left mr-8">
-                                <img src="{{ asset('storage/avatars/' . $profile->avatar) }}" alt="{{ $profile->avatar }}" class="w-16 h-16 rounded-full inline">
+                                <img src="{{ asset('storage/avatars/' . $profile->avatar) }}" alt="{{ $profile->name }}" class="w-16 h-16 rounded-full inline">
                             </div>
                             <div>
                                 <h2 class="text-lg font-medium text-gray-900">{{ $profile->name }}</h2>
                                 <h3 class="text-md font-medium text-gray-900">{{ __('@') . $profile->username }}</h3>
                                 <h4 class="mt-1 text-sm text-gray-600">{{ __('Joined on ') .$profile->created_at->format('j F Y') }}</h4>
+                                <p class="mt-4 text-sm text-gray-700">{{ $profile->bio }}</p>
+
+                                <span class="block mt-2 text-sm text-gray-500">Followers: {{ $profile->followers()->count() }} &bull; Posts: {{ $profile->posts()->count() }}</span>
                             </div>
 
                             @auth
                                 @if(Auth::id() !== $profile->id)
                                     <div class="mt-3 absolute top-8 right-6">
                                         @if(Auth::user()->follows($profile))
-                                            <form method="post" action="{{ route('unfollow', $profile->id) }}">
+                                            <form method="post" action="{{ route('users.unfollow', $profile->id) }}">
                                                 @csrf
                                                 <x-primary-button class="bg-red-500 hover:bg-red-400 focus:bg-red-700 active:bg-red-900 focus:ring-red-500">{{ __('Unfollow') }}</x-primary-button>
                                             </form>
                                         @else
-                                            <form method="post" action="{{ route('follow', $profile->id) }}">
+                                            <form method="post" action="{{ route('users.follow', $profile->id) }}">
                                                 @csrf
                                                 <x-primary-button>{{ __('Follow') }}</x-primary-button>
                                             </form>

@@ -64,6 +64,17 @@ class ProfileController extends Controller
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
+    public function updateBio(Request $request)
+    {
+        $validated = $request->validate([
+            'bio' => 'required|min:3|max:1000'
+        ]);
+
+        $request->user()->update($validated);
+
+        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+    }
+
     /**
      * Delete the user's account.
      */

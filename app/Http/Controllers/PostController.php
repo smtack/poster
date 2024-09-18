@@ -13,15 +13,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        $following = auth()->user()->following()->pluck('user_id');
+        $posts = Post::withCount('likes')->orderBy('likes_count', 'DESC')->paginate(10);
 
-        $posts = Post::query()
-                    ->whereIn('user_id', $following)
-                    ->orWhere('user_id', auth()->user()->id)
-                    ->latest()
-                    ->paginate(10);
-
-        return view('home', ['posts' => $posts]);
+        return view('posts', ['posts' => $posts]);
     }
 
     /**
@@ -111,10 +105,17 @@ class PostController extends Controller
         return view('search', compact('query', 'results'));
     }
 
-    public function explore()
+    public function like(Post $post)
     {
-        $posts = Post::latest()->paginate(10);
+        auth()->user()->likes()->attach($post);
 
-        return view('explore', ['posts' => $posts]);
+        return redirect()->back();
+    }
+
+    public function unlike(Post $post)
+    {
+        auth()->user()->likes()->detach($post);
+
+        return redirect()->back();
     }
 }

@@ -8,6 +8,13 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    public function index()
+    {
+        $users = User::withCount('followers')->orderBy('followers_count', 'DESC')->paginate(10);
+
+        return view('users', compact('users'));
+    }
+
     public function profile(string $profile)
     {
         if(!$profile = User::where('username', $profile)->first()) {
