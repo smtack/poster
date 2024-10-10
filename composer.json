@@ -1,6 +1,6 @@
 {
-    "name": "codeigniter4/appstarter",
-    "description": "CodeIgniter4 starter app",
+    "name": "codeigniter4/framework",
+    "description": "The CodeIgniter framework v4",
     "license": "MIT",
     "type": "project",
     "homepage": "https://codeigniter.com",
@@ -11,7 +11,6 @@
     },
     "require": {
         "php": "^8.1",
-        "codeigniter4/framework": "^4.0",
         "ext-intl": "*",
         "ext-mbstring": "*",
         "laminas/laminas-escaper": "^2.13",
@@ -24,7 +23,7 @@
         "kint-php/kint": "^5.0.4",
         "mikey179/vfsstream": "^1.6",
         "nexusphp/cs-config": "^3.6",
-        "phpunit/phpunit": "^10.5.16",
+        "phpunit/phpunit": "^10.5.16 || ^11.2",
         "predis/predis": "^1.1 || ^2.0"
     },
     "suggest": {

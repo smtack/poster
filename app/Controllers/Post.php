@@ -20,12 +20,7 @@ class Post extends BaseController
 
         $data = ['posts' => $model->getPosts()];
 
-        return view('templates/header', $data).view('index').view('templates/footer');
-    }
-
-    public function create()
-    {
-        return view('templates/header').view('create').view('templates/footer');
+        return view('templates/header', $data).view('home').view('templates/footer');
     }
 
     public function new()
@@ -50,10 +45,10 @@ class Post extends BaseController
             ];
         }
 
-        $rules += ['content' => 'required|min_length[2]|max_length[5000]'];
+        $rules += ['content' => 'required|min_length[2]|max_length[500]'];
 
         if(!$this->validateData($data, $rules)) {
-            return $this->create();
+            return redirect()->back()->withInput();
         }
 
         $post = $this->validator->getValidated();
@@ -68,7 +63,7 @@ class Post extends BaseController
             } else {
                 session()->setFlashData('error', 'The file has already been uploaded');
                 
-                return $this->create();
+                return redirect()->back();
             }
         }
 
@@ -138,10 +133,10 @@ class Post extends BaseController
             ];
         }
 
-        $rules += ['content' => 'required|min_length[2]|max_length[5000]'];
+        $rules += ['content' => 'required|min_length[2]|max_length[500]'];
 
         if(!$this->validateData($data, $rules)) {
-            return $this->edit($id);
+            return redirect()->back()->withInput();
         }
 
         $post = $this->validator->getValidated();
@@ -156,7 +151,7 @@ class Post extends BaseController
             } else {
                 session()->setFlashData('error', 'The file has already been uploaded');
                 
-                return $this->create();
+                return redirect()->back();
             }
         }
         
@@ -169,7 +164,7 @@ class Post extends BaseController
 
         $model->save($data);
 
-        return redirect()->to(base_url());
+        return redirect()->to('post/' . $id);
     }
 
     public function delete($id)
@@ -178,14 +173,14 @@ class Post extends BaseController
 
         $model->delete($id);
 
-        return redirect()->to(base_url());
+        return redirect()->route('home');
     }
 
     public function comment($id)
     {
         $data = $this->request->getPost(['comment']);
 
-        if(!$this->validateData($data, ['comment' => 'required|min_length[2]|max_length[1000]'])) {
+        if(!$this->validateData($data, ['comment' => 'required|min_length[2]|max_length[250]'])) {
             return $this->post($id);
         }
 
@@ -223,7 +218,7 @@ class Post extends BaseController
     {
         $data = $this->request->getPost(['comment']);
 
-        if(!$this->validateData($data, ['comment' => 'required|min_length[2]|max_length[1000]'])) {
+        if(!$this->validateData($data, ['comment' => 'required|min_length[2]|max_length[250]'])) {
             return $this->editComment($id);
         }
 

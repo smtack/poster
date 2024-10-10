@@ -1,5 +1,7 @@
 # Poster
 
+<img src="/public/screenshots/poster.png">
+
 ## Setup
 
 Create a database. Copy `env` to `.env` and tailor for your app, specifically the baseURL and any database settings. Then run `composer install` and `php spark migrate`.

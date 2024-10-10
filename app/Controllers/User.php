@@ -91,7 +91,7 @@ class User extends BaseController
 
         session()->set($session_data);
 
-        return redirect()->to(base_url());
+        return redirect()->to(base_url('/home'));
     }
 
     public function logout()

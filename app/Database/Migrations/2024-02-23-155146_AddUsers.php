@@ -34,7 +34,7 @@ class AddUsers extends Migration
             'profile_picture' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,
-                'null' => true
+                'default' => 'default.png'
             ],
             'created_at' => [
                 'type' => 'TIMESTAMP',
