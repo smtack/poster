@@ -55,12 +55,7 @@
 
                             @if ($comment->user->is(auth()->user()))
                                 <div class="mt-3 absolute top-4 right-6">
-                                    <form action="{{ route('delete-comment', $comment) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-
-                                        <button><img class="w-5" src="{{ asset('images/icons/bin.svg') }}" alt="Delete Comment" /></button>
-                                    </form>
+                                    <a href="{{ route('edit-comment', $comment) }}" class="text-indigo-400"><img class="w-6" src="{{ asset('images/icons/edit.svg') }}" alt="Edit Comment" /></a>
                                 </div>
                             @endif
                         </section>

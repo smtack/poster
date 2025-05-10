@@ -19,12 +19,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::patch('/update/{id}', [PostController::class, 'update'])->name('update');
     Route::delete('/delete/{id}', [PostController::class, 'destroy'])->name('delete');
 
+    Route::post('comment/{id}', [CommentController::class, 'store'])->name('comment');
+    Route::get('/edit-comment/{id}', [CommentController::class, 'edit'])->name('edit-comment');
+    Route::patch('/update-comment/{id}', [CommentController::class, 'update'])->name('update-comment');
+    Route::delete('delete-comment/{id}', [CommentController::class, 'destroy'])->name('delete-comment');
+
     Route::get('search', [PostController::class, 'search'])->name('search');
     Route::get('posts', [PostController::class, 'index'])->name('posts');
     Route::get('users', [UserController::class, 'index'])->name('users');
-
-    Route::post('comment/{id}', [CommentController::class, 'store'])->name('comment');
-    Route::delete('delete-comment/{id}', [CommentController::class, 'destroy'])->name('delete-comment');
 
     Route::get('/post/{id}', [PostController::class, 'show'])->name('post');
 

@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Edit Post') }}
+            {{ __('Edit Comment') }}
         </h2>
     </x-slot>
 
@@ -12,29 +12,29 @@
                     <section>
                         <header>
                             <h2 class="text-lg font-medium text-gray-900">
-                                {{ __('Edit Post') }}
+                                {{ __('Edit Comment') }}
                             </h2>
                         </header>
-                        <form method="post" action="{{ route('update', $post) }}" class="mt-6 space-y-6">
+                        <form method="post" action="{{ route('update-comment', $comment) }}" class="mt-6 space-y-6">
                             @csrf
                             @method('PATCH')
 
                             <div>
-                                <x-input-label for="post" :value="__('Post')" />
-                                <x-textarea id="post" name="post" class="mt-1 block w-full h-48 resize-none" :value="old('post', $post->post)" required autofocus autocomplete="post">{{ $post->post }}</x-textarea>
-                                <x-input-error class="mt-2" :messages="$errors->get('post')" />
+                                <x-input-label for="comment" :value="__('Comment')" />
+                                <x-textarea id="comment" name="comment" class="mt-1 block w-full h-32 resize-none" :value="old('comment', $comment->comment)" required autofocus autocomplete="comment">{{ $comment->comment }}</x-textarea>
+                                <x-input-error class="mt-2" :messages="$errors->get('comment')" />
                             </div>
 
                             <div class="flex items-center gap-4">
-                                <x-primary-button>{{ __('Edit') }}</x-primary-button>
+                                <x-primary-button>{{ __('Edit Comment') }}</x-primary-button>
                             </div>
                         </form>
-                        <form method="post" action="{{ route('delete', $post) }}" class="mt-6 space-y-6 flex justify-end">
+                        <form method="post" action="{{ route('delete-comment', $comment) }}" class="mt-6 space-y-6 flex justify-end">
                             @csrf
                             @method('DELETE')
 
                             <div class="flex items-center gap-4">
-                                <x-danger-button>{{ __('Delete Post') }}</x-danger-button>
+                                <x-danger-button>{{ __('Delete Comment') }}</x-danger-button>
                             </div>
                         </form>
                     </section>

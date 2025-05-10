@@ -52,7 +52,7 @@
                         </x-dropdown-link>
 
                         <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Account') }}
+                            {{ __('Settings') }}
                         </x-dropdown-link>
 
                         <!-- Authentication -->
@@ -105,7 +105,7 @@
                 </x-responsive-nav-link>
 
                 <x-responsive-nav-link :href="route('profile.edit')">
-                    {{ __('Account') }}
+                    {{ __('Settings') }}
                 </x-responsive-nav-link>
 
                 <!-- Authentication -->
