@@ -121,7 +121,7 @@
                     </main>
 
                     <footer class="py-16 text-center text-sm text-black dark:text-white/70">
-                        {{ env('APP_NAME') }} &copy; {{ Date('Y') }}
+                        &copy; {{ env('APP_NAME') }} {{ Date('Y') }}
                     </footer>
                 </div>
             </div>
