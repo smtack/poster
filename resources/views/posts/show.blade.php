@@ -3,18 +3,18 @@
         <x-post-card :post="$post" />
     </div>
 
-    <div class="py-12">
+    <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white overflow-hidden shadow-xs sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <section>
                         <header>
                             <h2 class="text-lg font-medium text-gray-900">
-                                {{ __('Make a comment') }}
+                                {{ __('posts.make_a_comment') }}
                             </h2>
 
                             <p class="mt-1 text-sm text-gray-600">
-                                {{ __("What do you think?") }}
+                                {{ __('posts.what_do_you_think') }}
                             </p>
                         </header>
 
@@ -27,14 +27,14 @@
                             </div>
 
                             <div class="flex items-center gap-4">
-                                <x-primary-button>{{ __('Comment') }}</x-primary-button>
+                                <x-primary-button>{{ __('posts.comment') }}</x-primary-button>
                             </div>
                         </form>
                     </section>
                 </div>
 
                 @foreach($comments as $comment)
-                    <div class="border-t relative p-6 text-gray-900">
+                    <div class="border-t border-gray-200 relative p-6 text-gray-900">
                         <section>
                             <header>
                                 <div class="inline">
@@ -43,9 +43,7 @@
                                     <a href="{{ route('profile', $comment->user->username) }}"><h2 class="inline ml-1 text-lg font-medium text-indigo-400">{{ $comment->user->name }}<span class="ml-2 text-sm font-medium text-gray-900">{{ __('@') . $comment->user->username }}</span></h2></a>
                                 </div>
                                 <span class="mt-1 text-sm text-gray-600">
-                                    {{ $comment->created_at->format('j F Y') }}
-                                    &bull;
-                                    {{ $comment->created_at->format('H:i') }}
+                                    {{ $post->created_at->diffForHumans() }}
                                 </span>
                             </header>
 

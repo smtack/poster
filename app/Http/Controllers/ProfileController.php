@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
+use App\Models\User;
 use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -14,10 +16,28 @@ use Illuminate\Validation\Rules\File as FileRule;
 class ProfileController extends Controller
 {
     /**
+     * Display the users profile page
+     */
+    public function index(string $profile)
+    {
+        if(!$profile = User::where('username', $profile)->first()) {
+            abort(404);
+        }
+
+        view()->share('title', "{$profile->name}'s Profile");
+
+        $posts = Post::where('user_id', $profile->id)->latest()->paginate(10);
+
+        return view('profile.index', compact('profile', 'posts'));
+    }
+
+    /**
      * Display the user's profile form.
      */
     public function edit(Request $request): View
     {
+        view()->share('title', "Account Settings");
+
         return view('profile.edit', [
             'user' => $request->user(),
         ]);
@@ -61,7 +81,7 @@ class ProfileController extends Controller
             'avatar' => $filename
         ]);
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return Redirect::route('profile.edit')->with('status', 'avatar-updated');
     }
 
     public function updateBio(Request $request)
@@ -72,7 +92,7 @@ class ProfileController extends Controller
 
         $request->user()->update($validated);
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return Redirect::route('profile.edit')->with('status', 'bio-updated');
     }
 
     /**

@@ -1,6 +1,6 @@
 @props(['post'])
 
-<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg border border-black/5 hover:bg-slate-50 hover:cursor-pointer" onclick="location.href='{{ route('post', $post) }}'">
+<div class="bg-white overflow-hidden shadow-xs sm:rounded-lg border border-black/5 hover:bg-slate-50 hover:cursor-pointer" onclick="location.href='{{ route('post', $post) }}'">
     <div class="p-6 relative text-gray-900">
         <section>
             <header>

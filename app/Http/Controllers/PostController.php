@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Comment;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -15,7 +16,7 @@ class PostController extends Controller
     {
         $posts = Post::withCount('likes')->orderBy('likes_count', 'DESC')->paginate(10);
 
-        return view('posts', ['posts' => $posts]);
+        return view('posts.index', ['posts' => $posts]);
     }
 
     /**
@@ -41,7 +42,7 @@ class PostController extends Controller
 
         $comments = Comment::where('post_id', $post->id)->latest()->get();
 
-        return view('post', compact('post', 'comments'));
+        return view('posts.show', compact('post', 'comments'));
     }
 
     /**
@@ -55,7 +56,7 @@ class PostController extends Controller
             abort(403);
         }
 
-        return view('edit', ['post' => $post]);
+        return view('posts.edit', ['post' => $post]);
     }
 
     /**
@@ -94,27 +95,16 @@ class PostController extends Controller
         return redirect('/home');
     }
 
-    public function search(Request $request)
-    {
-        $query = $request->input('q');
-
-        $results = Post::where('post', 'LIKE', "%$query%")->latest()->paginate(10)->withQueryString();
-
-        view()->share('title', 'Search - ' . $query);
-
-        return view('search', compact('query', 'results'));
-    }
-
     public function like(Post $post)
     {
-        auth()->user()->likes()->attach($post);
+        Auth::user()->likes()->attach($post);
 
         return redirect()->back();
     }
 
     public function unlike(Post $post)
     {
-        auth()->user()->likes()->detach($post);
+        Auth::user()->likes()->detach($post);
 
         return redirect()->back();
     }

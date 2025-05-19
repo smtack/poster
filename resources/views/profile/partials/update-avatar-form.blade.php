@@ -1,11 +1,11 @@
 <section>
     <header>
         <h2 class="text-lg font-medium text-gray-900">
-            {{ __('Profile Picture') }}
+            {{ __('profile.profile_picture') }}
         </h2>
 
         <p class="mt-1 text-sm text-gray-600">
-            {{ __("Update your account's profile picture.") }}
+            {{ __('profile.update_profile_picture') }}
         </p>
     </header>
 
@@ -18,22 +18,22 @@
         @method('patch')
 
         <div>
-            <x-input-label for="avatar" :value="__('Image')" />
-            <input id="avatar" name="avatar" type="file" class="mt-1 block w-full" required autofocus />
+            <x-input-label for="avatar" :value="__('profile.image')" />
+            <input id="avatar" name="avatar" type="file" class="mt-1 block w-full text-gray-900" required autofocus />
             <x-input-error class="mt-2" :messages="$errors->get('avatar')" />
         </div>
 
         <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Upload') }}</x-primary-button>
+            <x-primary-button>{{ __('profile.upload') }}</x-primary-button>
 
-            @if (session('status') === 'profile-updated')
+            @if (session('status') === 'avatar-updated')
                 <p
                     x-data="{ show: true }"
                     x-show="show"
                     x-transition
                     x-init="setTimeout(() => show = false, 2000)"
                     class="text-sm text-gray-600"
-                >{{ __('Uploaded.') }}</p>
+                >{{ __('profile.uploaded') }}</p>
             @endif
         </div>
     </form>

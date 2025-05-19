@@ -36,7 +36,7 @@
 
             <!-- Page Heading -->
             @isset($header)
-                <header class="bg-white shadow">
+                <header class="bg-white shadow-sm">
                     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
@@ -47,6 +47,17 @@
             <main>
                 {{ $slot }}
             </main>
+
+            <footer class="py-4 text-sm text-gray-600 dark:text-white/70">
+                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                    <p class="float-left">&copy; {{ env('APP_NAME') }} {{ Date('Y') }}</p>
+                    <p class="float-right">
+                        <a href="{{ route('lang', 'en') }}">EN</a>
+                            &#10072;
+                        <a href="{{ route('lang', 'fr') }}">FR</a>
+                    </p>
+                </div>
+            </footer>
         </div>
     </body>
 </html>

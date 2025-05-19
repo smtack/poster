@@ -68,7 +68,7 @@
 
                             <a
                                 href="{{ route('register') }}"
-                                class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-indigo-600 lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-indigo-600"
+                                class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] outline-none transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-hidden focus-visible:ring-indigo-600 lg:pb-10"
                             >
                                 <div class="flex size-12 shrink-0 items-center justify-center rounded-full bg-indigo-600/10 sm:size-16">
                                     <img class="size-5 sm:size-6" src="{{ asset('images/icons/register.svg') }}" alt="Register">
@@ -82,12 +82,12 @@
                                     </p>
                                 </div>
 
-                                <svg class="size-6 shrink-0 self-center stroke-indigo-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg>
+                                <svg class="size-6 shrink-0 self-center block ml-auto stroke-indigo-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg>
                             </a>
 
                             <a
                                 href="{{ route('login') }}"
-                                class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-indigo-600 lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-indigo-600"
+                                class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-hidden focus-visible:ring-indigo-600 lg:pb-10"
                             >
                                 <div class="flex size-12 shrink-0 items-center justify-center rounded-full bg-indigo-600/10 sm:size-16">
                                     <img class="size-5 sm:size-6" src="{{ asset('images/icons/login.svg') }}" alt="Register">
@@ -101,22 +101,8 @@
                                     </p>
                                 </div>
 
-                                <svg class="size-6 shrink-0 self-center stroke-indigo-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg>
+                                <svg class="size-6 shrink-0 self-center block ml-auto stroke-indigo-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg>
                             </a>
-
-                            <div class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-indigo-600 lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-indigo-600">
-                                <div class="flex size-12 shrink-0 items-center justify-center rounded-full bg-indigo-600/10 sm:size-16">
-                                    <img class="size-5 sm:size-6" src="{{ asset('images/icons/speech.svg') }}" alt="Talk">
-                                </div>
-
-                                <div class="pt-3 sm:pt-5">
-                                    <h2 class="text-xl font-semibold text-black dark:text-white">Join the conversation</h2>
-
-                                    <p class="mt-4 text-sm/relaxed">
-                                        Join today and start posting.
-                                    </p>
-                                </div>
-                            </div>
                         </div>
                     </main>
 

@@ -35,6 +35,17 @@
             <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
                 {{ $slot }}
             </div>
+
+            <div class="text-center py-4 text-sm text-gray-600 dark:text-white/70">
+                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                    <p class="mb-2">
+                        <a href="{{ route('lang', 'en') }}">EN</a>
+                            &#10072;
+                        <a href="{{ route('lang', 'fr') }}">FR</a>
+                    </p>
+                    <p>&copy; {{ env('APP_NAME') }} {{ Date('Y') }}</p>
+                </div>
+            </div>
         </div>
     </body>
 </html>

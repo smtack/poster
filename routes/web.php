@@ -4,6 +4,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -13,6 +14,11 @@ Route::get('/', function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/home', HomeController::class)->name('home');
+
+    Route::get('search', SearchController::class)->name('search');
+
+    Route::get('posts', [PostController::class, 'index'])->name('posts');
+    Route::get('/post/{id}', [PostController::class, 'show'])->name('post');
 
     Route::post('/create', [PostController::class, 'store'])->name('create');
     Route::get('/edit/{id}', [PostController::class, 'edit'])->name('edit');
@@ -24,13 +30,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::patch('/update-comment/{id}', [CommentController::class, 'update'])->name('update-comment');
     Route::delete('delete-comment/{id}', [CommentController::class, 'destroy'])->name('delete-comment');
 
-    Route::get('search', [PostController::class, 'search'])->name('search');
-    Route::get('posts', [PostController::class, 'index'])->name('posts');
     Route::get('users', [UserController::class, 'index'])->name('users');
-
-    Route::get('/post/{id}', [PostController::class, 'show'])->name('post');
-
-    Route::get('/profile/{profile}', [UserController::class, 'profile'])->name('profile');
 
     Route::post('users/{user}/follow', [UserController::class, 'follow'])->name('users.follow');
     Route::post('users/{user}/unfollow', [UserController::class, 'unfollow'])->name('users.unfollow');
@@ -40,6 +40,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
+    Route::get('/profile/{profile}', [ProfileController::class, 'index'])->name('profile');
     Route::get('/account', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::patch('/avatar', [ProfileController::class, 'updateAvatar'])->name('profile.avatar');
@@ -48,3 +49,4 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+require __DIR__.'/lang.php';

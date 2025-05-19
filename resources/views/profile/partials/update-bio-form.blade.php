@@ -1,11 +1,11 @@
 <section>
     <header>
         <h2 class="text-lg font-medium text-gray-900">
-            {{ __('Update Bio') }}
+            {{ __('profile.update_bio') }}
         </h2>
 
         <p class="mt-1 text-sm text-gray-600">
-            {{ __("Introduce yourself.") }}
+            {{ __('profile.introduce_yourself') }}
         </p>
     </header>
 
@@ -18,22 +18,22 @@
         @method('patch')
 
         <div>
-            <x-input-label for="bio" :value="__('Bio')" />
+            <x-input-label for="bio" :value="__('profile.bio')" />
             <x-textarea id="bio" name="bio" class="mt-1 block w-full h-60 resize-none" required autofocus autocomplete="bio">{{ old('bio', $user->bio) }}</x-textarea>
             <x-input-error class="mt-2" :messages="$errors->get('bio')" />
         </div>
 
         <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
+            <x-primary-button>{{ __('profile.save') }}</x-primary-button>
 
-            @if (session('status') === 'profile-updated')
+            @if (session('status') === 'bio-updated')
                 <p
                     x-data="{ show: true }"
                     x-show="show"
                     x-transition
                     x-init="setTimeout(() => show = false, 2000)"
                     class="text-sm text-gray-600"
-                >{{ __('Saved.') }}</p>
+                >{{ __('profile.saved') }}</p>
             @endif
         </div>
     </form>

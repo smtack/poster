@@ -4,16 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
     public function __invoke()
     {
-        $following = auth()->user()->following()->pluck('user_id');
+        $following = Auth::user()->following()->pluck('user_id');
 
         $posts = Post::query()
                     ->whereIn('user_id', $following)
-                    ->orWhere('user_id', auth()->user()->id)
+                    ->orWhere('user_id', Auth::user()->id)
                     ->latest()
                     ->paginate(10);
 
