@@ -6,11 +6,11 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>
-            @if(isset($title))
-                {{ __('Microblog - ') . $title }}
-            @else
-                {{ __('Microblog') }}
-            @endif
+            {{ config('app.name') }}
+
+            @isset($title)
+                {{ ' - ' . $title }}
+            @endisset
         </title>
 
         <!-- Fonts -->
@@ -21,10 +21,8 @@
         <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/favicon/favicon-32x32.png') }}">
         <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicon/favicon-16x16.png') }}">
         <link rel="manifest" href="{{ asset('images/favicon/site.webmanifest') }}">
-        <link rel="mask-icon" href="{{ asset('images/favicon/safari-pinned-tab.svg') }}" color="#5bbad5">
         <link rel="shortcut icon" href="{{ asset('images/favicon/favicon.ico') }}">
         <meta name="msapplication-TileColor" content="#2b5797">
-        <meta name="msapplication-config" content="{{ asset('images/favicon/browserconfig.xml') }}">
         <meta name="theme-color" content="#ffffff">
 
         <!-- Scripts -->
@@ -50,7 +48,7 @@
 
             <footer class="py-4 text-sm text-gray-600 dark:text-white/70">
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    <p class="float-left">&copy; {{ env('APP_NAME') }} {{ Date('Y') }}</p>
+                    <p class="float-left">&copy; {{ config('app.name') }} {{ Date('Y') }}</p>
                     <p class="float-right">
                         <a href="{{ route('lang', 'en') }}">EN</a>
                             &#10072;

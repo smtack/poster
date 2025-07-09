@@ -1,8 +1,8 @@
-# Microblog
+# Poster
 
 <img src="public/images/screenshot.png" alt="Screenshot">
 
-Microblog is a microblogging application which allows users to post, comment, like posts and follow users.
+Poster is a microblogging application where users can make posts, comment on posts, like posts and follow users.
 
 ## Installation
 
